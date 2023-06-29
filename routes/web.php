@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     //supplier_web_route
     Route::get('/supplier',[SupplierController::class,'index'])->name('supplier.index');
     Route::get('/supplier/create',[SupplierController::class,'create'])->name('supplier.create');
+    Route::post('/supplier/store',[SupplierController::class,'store'])->name('supplier.store');
 
 });
 
