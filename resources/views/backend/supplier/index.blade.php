@@ -1,19 +1,33 @@
 <x-sg-master>
-    <div class="card">
-        <div class="card-body">
-            <table class="table datatable-highlight text-warp table-responsive table-border-solid">
+    <div class="content">
+        <div class="card">
+            <div class="card-header bg-teal-800 text-white header-elements-inline">
+                <h6 class="card-title">Supplier List</h6>
+            <div class="header-elements">
+            <div class="list-icons">
+                <a href="/supplier/create"><button>Create Supplier</button></a>
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item ui-sortable-handle" data-action="move"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+                <a class="list-icons-item" data-action="fullscreen"></a>
+            </div>
+        </div>
+    </div>
+
+        <div class="content" >
+            <table class="table datatable-responsive table-bordered">
                 <thead>
-                    <tr>
-                    <th>Sl</th>
-                    <th>Supplier Code</th>
-                    <th>Supplier name</th>
-                    <th>Supplier Email</th>
-                    <th>Supplier Phone</th>
-                    <th>Supplier Country</th>
-                    <th>Supplier Address</th>
-                    <th>Supplier image</th>
-                    <th>action</th>
-				
+                    <tr class="bg-teal-300">
+                        <th>Sl</th>
+                        <th>Supplier Code</th>
+                        <th>Supplier name</th>
+                        <th>Supplier Email</th>
+                        <th>Supplier Phone</th>
+                        <th class="sorting">Supplier Country</th>
+                        <th>Supplier Address</th>
+                        <th>Supplier image</th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +49,11 @@
                         </td>
                         <td>
                             <div class="list-icons">
-                                <a href="#" class="list-icons-item" ><i class="icon-eye"></i></a>
-                                <a href="#" class="list-icons-item"><i class="icon-pencil7"></i></a>
-                                <a href="#" class="list-icons-item"><i class="icon-trash"></i></a>
+                                <a href="#" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px"></i></a>
+                                <a href="{{route('supplier.edit', $supplier->id)}}" class="list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
+                                <a href="#" class="list-icons-item"><i class="icon-trash" title="Delete" style="font-size: 20px"></i></a>
                                 <div class="dropdown">
-                                    <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog6"></i></a>
+                                    <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog6" style="font-size: 20px"></i></a>
 
                                     <div class="dropdown-menu">
                                         <a href="#" class="dropdown-item"><i class="icon-file-pdf"></i> Export to PDF</a>
@@ -55,5 +69,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+   
     </x-sg-master> 

@@ -1,7 +1,7 @@
 <x-sg-master>
     <x-sg-card>
         <x-slot name="heading">Supplier Create</x-slot>
-        <x-slot name="body">
+        <x-slot name="body" >
             <form action="/supplier/store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">   
@@ -9,18 +9,27 @@
                       <div class="form-group">
                         <label class="font-weight-semibold">Suppliers Code</label><br>
                         <input type="text" name="sup_code" class="form-control">
+                        @if($errors->has('sup_code'))
+                            <span class="text-danger">{{$errors->first('sup_code')}}</span></span>
+                        @endif
                       </div>
                     </div>
                   <div class="col-lg-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label class="font-weight-semibold">Suppliers Name</label><br>
                       <input type="text" name="sup_name" class="form-control">
+                      @if($errors->has('sup_name'))
+                         <span class="text-danger">{{$errors->first('sup_name')}}</span></span>
+                      @endif
                     </div>
                   </div>
                   <div class="col-lg-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label class="font-weight-semibold">Suppliers Phone</label><br>
                       <input type="tel" name="sup_phone" class="form-control" placeholder="018XX-XXXXXX" required>
+                      @if($errors->has('sup_phone'))
+                         <span class="text-danger">{{$errors->first('sup_phone')}}</span></span>
+                      @endif
                     </div>
                   </div>
                   <div class="col-lg-6 col-sm-6 col-12">
@@ -50,17 +59,27 @@
                     </div>    
                   </div>
                   <a href="/supplier" ><button type="submit" class="btn btn-outline-primary" style="margin: 10px">Submit</button></a>
-                
-    
-    
-    
+
+               
+                   
     
                 </div>
     
     
     
               </form>
+                              
+   
     
         </x-slot>
+
     </x-sg-card>
+
+    
 </x-sg-master>
+  @if($message = Session::get('success'))
+  <div class="alert alert-success alert-block">
+    <strong>{{$message}}</strong>
+    @endif
+  </div> 
+
