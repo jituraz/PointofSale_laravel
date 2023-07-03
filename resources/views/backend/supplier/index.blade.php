@@ -19,7 +19,7 @@
             <table class="table datatable-responsive table-bordered">
                 <thead>
                     <tr class="bg-teal-300">
-                        <th>Sl</th>
+                        
                         <th>Supplier Code</th>
                         <th>Supplier name</th>
                         <th>Supplier Email</th>
@@ -33,7 +33,7 @@
                 <tbody>
                     @foreach ($suppliers as $supplier )
                     <tr>
-                        <td>{{$supplier->id}}</td>
+                        
                         <td>{{$supplier->sup_code}}</td>
                         <td>{{$supplier->sup_name}}</td>
                         <td>{{$supplier->sup_email}}</td>
@@ -48,10 +48,16 @@
                             </div>
                         </td>
                         <td>
-                            <div class="list-icons">
-                                <a href="#" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px"></i></a>
-                                <a href="{{route('supplier.edit', $supplier->id)}}" class="list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
-                                <a href="#" class="list-icons-item"><i class="icon-trash" title="Delete" style="font-size: 20px"></i></a>
+                            <div class="list-icons">                             
+                                <form action="{{ route('supplier.delete', $supplier->id)}}" method="post">
+                                    <a href="#" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; padding:15px"></i></a>
+                                    <a href="{{route('supplier.edit', $supplier->id)}}" class="list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
+                                    @csrf
+                                    @method('DELETE')
+                                    
+                                    <button onclick="return confirm('Are you sure want to delete ?')" class="btn"><i class="icon-trash" title="Delete" style="font-size: 20px"></i></button>
+
+                                </form>
                                 <div class="dropdown">
                                     <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog6" style="font-size: 20px"></i></a>
 

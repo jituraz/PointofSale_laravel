@@ -2,6 +2,24 @@
     <x-sg-card>
         <x-slot name="heading">Supplier Create</x-slot>
         <x-slot name="body" >
+          
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+
+       
+          @if($message = Session::get('success'))
+          <div class="alert alert-success alert-block">
+            <strong>{{$message}}</strong>
+           
+          </div> 
+          @endif
             <form action="/supplier/store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">   
@@ -68,7 +86,7 @@
     
     
               </form>
-                              
+                     
    
     
         </x-slot>
@@ -77,9 +95,4 @@
 
     
 </x-sg-master>
-  @if($message = Session::get('success'))
-  <div class="alert alert-success alert-block">
-    <strong>{{$message}}</strong>
-    @endif
-  </div> 
 

@@ -2,6 +2,12 @@
     <x-sg-card>
         <x-slot name="heading">Supplier Edit : {{$supplier->sup_name}}</x-slot>
         <x-slot name="body" >
+          @if($message = Session::get('success'))
+          <div class="alert alert-success alert-block">
+            <strong>{{$message}}</strong>
+           
+          </div> 
+          @endif
             <form action="{{route('supplier.update', $supplier->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -72,9 +78,6 @@
 
     
 </x-sg-master>
-  @if($message = Session::get('success'))
-  <div class="alert alert-success alert-block">
-    <strong>{{$message}}</strong>
-    @endif
+
   </div> 
 
