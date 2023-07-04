@@ -1,4 +1,5 @@
 <x-sg-master>
+
     <div class="content">
         <div class="card">
             <div class="card-header bg-teal-800 text-white header-elements-inline">
@@ -13,10 +14,17 @@
                 <a class="list-icons-item" data-action="fullscreen"></a>
             </div>
         </div>
-    </div>
+        </div>
 
         <div class="content" >
+            
             <table class="table datatable-responsive table-bordered">
+                @if($message = Session::get('success'))
+    <div class="alert alert-danger alert-block">
+      <strong>{{$message}}</strong>
+     
+    </div> 
+    @endif
                 <thead>
                     <tr class="bg-teal-300">
                         
@@ -42,8 +50,8 @@
                         <td>{{$supplier->sup_address}}</td>
                         <td><div class="d-flex align-items-center">
                             <div class="col-md-2 ">
-                                <a href="images/{{$supplier->sup_image}}" data-popup="lightbox">
-                                    <img src="images/{{$supplier->sup_image}}" width="160px" alt="">
+                                <a href="images/suppliers/{{$supplier->sup_image}}" data-popup="lightbox">
+                                    <img src="images/suppliers/{{$supplier->sup_image}}" width="160px" alt="">
                                 </a>
                             </div>
                         </td>
@@ -77,3 +85,5 @@
         </div>
    
     </x-sg-master> 
+ 
+    

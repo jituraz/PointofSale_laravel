@@ -1,7 +1,9 @@
 <x-sg-master>
     <x-sg-card>
         <x-slot name="heading">Supplier Create</x-slot>
+        <x-slot name="">Supplier Create</x-slot>
         <x-slot name="body" >
+          
           
           @if ($errors->any())
               <div class="alert alert-danger">
