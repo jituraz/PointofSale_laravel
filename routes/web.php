@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
     Route::patch('/supplier/{id}/update', [SupplierController::class, 'update'])->name('supplier.update');
     Route::delete('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');
+    Route::delete('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');
+    Route::get('supplier/{id}/show', [SupplierController::class, 'show'])->name('supplier.show');
+    Route::get('supplier/{id}/change-staus', [SupplierController::class, 'changeStatus'])->name('supplier.change-status');
 
 
 });

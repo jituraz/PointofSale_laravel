@@ -1,9 +1,10 @@
 <x-sg-master>
+ 
     <x-sg-card>
-        <x-slot name="heading">Supplier Create</x-slot>
-        <x-slot name="">Supplier Create</x-slot>
+<x-slot name="heading">Supplier Create </x-slot>
+        
         <x-slot name="body" >
-          
+           
           
           @if ($errors->any())
               <div class="alert alert-danger">
@@ -16,12 +17,11 @@
           @endif
 
        
-          @if($message = Session::get('success'))
-          <div class="alert alert-success alert-block">
-            <strong>{{$message}}</strong>
-           
+          {{-- @if($message = Session::has('success'))
+          <div class="alert alert-success alert-block" role="alert">
+            {{Session::get('success')}}
           </div> 
-          @endif
+          @endif --}}
             <form action="/supplier/store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">   
@@ -29,6 +29,7 @@
                       <div class="form-group">
                         <label class="font-weight-semibold">Suppliers Code</label><br>
                         <input type="text" name="sup_code" class="form-control">
+                        {{-- error Print Session --}}
                         @if($errors->has('sup_code'))
                             <span class="text-danger">{{$errors->first('sup_code')}}</span></span>
                         @endif
@@ -38,6 +39,7 @@
                     <div class="form-group">
                       <label class="font-weight-semibold">Suppliers Name</label><br>
                       <input type="text" name="sup_name" class="form-control">
+                      {{-- error Print Session --}}
                       @if($errors->has('sup_name'))
                          <span class="text-danger">{{$errors->first('sup_name')}}</span></span>
                       @endif
@@ -47,6 +49,7 @@
                     <div class="form-group">
                       <label class="font-weight-semibold">Suppliers Phone</label><br>
                       <input type="tel" name="sup_phone" class="form-control" placeholder="018XX-XXXXXX" required>
+                      {{-- error Print Session --}}
                       @if($errors->has('sup_phone'))
                          <span class="text-danger">{{$errors->first('sup_phone')}}</span></span>
                       @endif
@@ -79,22 +82,25 @@
                     </div>    
                   </div>
                   <a href="/supplier" ><button type="submit" class="btn btn-outline-primary" style="margin: 10px">Submit</button></a>
-
-               
-                   
-    
-                </div>
-    
-    
-    
-              </form>
-                     
-   
-    
+                  <a href="/supplier" class="btn btn-outline-primary" style="margin: 10px">Back</button></a>
+                </div>    
+              </form>    
         </x-slot>
-
-    </x-sg-card>
-
-    
+    </x-sg-card>    
 </x-sg-master>
-
+{{-- toastr Notification part --}}
+<script>
+  toastr.options = {
+      "closeButton": true,
+      "progressBar" : true,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+  }
+</script> 
+@if(Session::has('success'))
+<script>
+  toastr.success("{{Session::get('success')}}");
+</script>
+@endif

@@ -1,13 +1,14 @@
 <x-sg-master>
     <x-sg-card>
         <x-slot name="heading">Supplier Edit : {{$supplier->sup_name}}</x-slot>
+        
         <x-slot name="body" >
-          @if($message = Session::get('success'))
+          {{-- @if($message = Session::get('success'))
           <div class="alert alert-success alert-block">
             <strong>{{$message}}</strong>
            
           </div> 
-          @endif
+          @endif --}}
             <form action="{{route('supplier.update', $supplier->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -79,5 +80,26 @@
     
 </x-sg-master>
 
-  </div> 
+  <script>
 
+    toastr.options = {
+  
+        "closeButton": true,
+        "progressBar" : true,
+  
+        "showDuration": "300",
+  
+        "hideDuration": "1000",
+  
+        "timeOut": "5000",
+  
+        "extendedTimeOut": "1000",
+  
+    }
+  
+  </script> 
+  @if(Session::has('success'))
+  <script>
+    toastr.success("{{Session::get('success')}}");
+  </script>
+  @endif

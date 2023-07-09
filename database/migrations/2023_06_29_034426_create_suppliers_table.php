@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('sup_name', 124);
             $table->string('sup_email', 50)->unique();
             $table->string('sup_phone', 20)->unique();
-            $table->string('sup_country')->unique();
+            $table->string('sup_country');
             $table->string('sup_address')->nullable();
             $table->string('sup_image')->nullable();
             $table->timestamps();

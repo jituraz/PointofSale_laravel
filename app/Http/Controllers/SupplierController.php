@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use POST;
 
 class SupplierController extends Controller
 {
@@ -108,6 +109,25 @@ class SupplierController extends Controller
             
         return back()->withSuccess('Supplier Delete Successfully !!!!! ');
 
+    }
+    public function show($id)
+    {
+        $supplier = Supplier::find($id);
+        return view('backend.supplier.show', compact('supplier'));
+    }
+    public function changeStatus($id)
+    {
+        $getStatus = Supplier::select('sup_status')->where('id',$id)->first();
+        if($getStatus->sup_status==1){
+            $status = 0;
+
+        }else{
+            $status = 1;
+
+        }
+        Supplier::where('id',$id)->update(['sup_status'=>$status]);
+
+        return back()->with('info','Supplier Status Change Successfully !!!!! ');
     }
 
 }

@@ -6,7 +6,8 @@
                 <h6 class="card-title">Supplier List</h6>
             <div class="header-elements">
             <div class="list-icons">
-                <a href="/supplier/create"><button>Create Supplier</button></a>
+                <a href="/supplier/create"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
+                    linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Create Supplier<i class="icon-checkmark2 ml-1"></i></button></a>
                 <a class="list-icons-item" data-action="collapse"></a>
                 <a class="list-icons-item ui-sortable-handle" data-action="move"></a>
                 <a class="list-icons-item" data-action="reload"></a>
@@ -19,12 +20,12 @@
         <div class="content" >
             
             <table class="table datatable-responsive table-bordered">
-                @if($message = Session::get('success'))
+                {{-- @if($message = Session::get('success'))
     <div class="alert alert-danger alert-block">
       <strong>{{$message}}</strong>
      
     </div> 
-    @endif
+    @endif --}}
                 <thead>
                     <tr class="bg-teal-300">
                         
@@ -34,6 +35,7 @@
                         <th>Supplier Phone</th>
                         <th class="sorting">Supplier Country</th>
                         <th>Supplier Address</th>
+                        <th>Supplier Status</th>
                         <th>Supplier image</th>
                         <th>action</th>
                     </tr>
@@ -48,6 +50,14 @@
                         <td>{{$supplier->sup_phone}}</td>
                         <td>{{$supplier->sup_country}}</td>
                         <td>{{$supplier->sup_address}}</td>
+                        <td>
+                            @if ($supplier->sup_status==1)
+                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-success">Active</a>
+                            @else
+                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-danger">Inactive</a>
+                            @endif
+                        </td>
+
                         <td><div class="d-flex align-items-center">
                             <div class="col-md-2 ">
                                 <a href="images/suppliers/{{$supplier->sup_image}}" data-popup="lightbox">
@@ -58,7 +68,7 @@
                         <td>
                             <div class="list-icons">                             
                                 <form action="{{ route('supplier.delete', $supplier->id)}}" method="post">
-                                    <a href="#" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; padding:15px"></i></a>
+                                    <a href="{{route('supplier.show', $supplier->id)}}" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; padding:15px"></i></a>
                                     <a href="{{route('supplier.edit', $supplier->id)}}" class="list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
                                     @csrf
                                     @method('DELETE')
@@ -85,5 +95,33 @@
         </div>
    
     </x-sg-master> 
+    <script>
+
+        toastr.options = {
+      
+            "closeButton": true,
+            "progressBar" : true,
+      
+            "showDuration": "300",
+      
+            "hideDuration": "1000",
+      
+            "timeOut": "5000",
+      
+            "extendedTimeOut": "1000",
+      
+        }
+      
+      </script> 
+      @if(Session::has('success'))
+      <script>
+        toastr.error("{{Session::get('success')}}");
+      </script>
+      @endif
+      @if(Session::has('info'))
+      <script>
+        toastr.info("{{Session::get('info')}}");
+      </script>
+      @endif
  
     
