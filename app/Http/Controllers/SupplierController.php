@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use POST;
+use View;
 
 class SupplierController extends Controller
 {
@@ -130,4 +134,40 @@ class SupplierController extends Controller
         return back()->with('info','Supplier Status Change Successfully !!!!! ');
     }
 
+
+    public function generatePDF(){
+        $suppliers = Supplier::all();
+        $data = [
+            'title' => 'Welcome to Point of sale',
+            'date' => date('m/d/Y'),
+            'image'=> 'images/suppliers/',
+            
+        ];
+        
+
+        $pdf = PDF::loadView('backend.supplier.downloadpdf',$data , compact('suppliers'))->setPaper('a4','landscape');
+        return $pdf->download('mypdf'.time().'pdf');
+
+        // return view('backend.supplier.downloadpdf',compact('suppliers'));
+    
+        // $supliers = Supplier::all();
+        // foreach ($supliers as $supplier){
+        //     // $imagePath = public_path('images/suppliers/'.$supplier['sup_image']);
+        //     $imagePath = 'images/suppliers/'.$supplier['sup_image'];
+        // //    print_r($imagePath);
+        //     $imageData = Storage::get($imagePath);
+        //     // print_r($imageData);
+        //     $base64Image = base64_encode($imageData);
+        //     $supplier->sup_image= 'data:image/jpeg;base64,'.$base64Image;
+        // }
+        // $data = ['Supplier' => $supliers];
+        // $html =View::make('backend.supplier.downloadpdf', $data)->Blade::render();
+        // // print_r($html);
+        // $pdf = new Dompdf();
+        // $pdf->loadHtml($html);
+        // $pdf->render();
+        // return $pdf->stream('supplier pdf.pdf');
+    }
+
 }
+ 

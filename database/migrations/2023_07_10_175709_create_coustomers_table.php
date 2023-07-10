@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('coustomers', function (Blueprint $table) {
             $table->id();
-            $table->string('cous_code', 24);
             $table->string('cous_name', 124);
             $table->string('cous_email', 50)->nullable()->unique();
             $table->string('cous_phone', 20)->nullable()->unique();
             $table->string('cous_country')->nullable()->unique();
             $table->string('cous_address')->nullable()->unique();
             $table->string('cous_image')->nullable()->unique();
+            $table->integer('cous_code')->nullable()->unique();
             $table->timestamps();
         });
     }

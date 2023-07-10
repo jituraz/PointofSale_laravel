@@ -21,13 +21,13 @@
             
             <table class="table datatable-responsive table-bordered">
                 {{-- @if($message = Session::get('success'))
-    <div class="alert alert-danger alert-block">
-      <strong>{{$message}}</strong>
+                    <div class="alert alert-danger alert-block">
+                     <strong>{{$message}}</strong>
      
-    </div> 
-    @endif --}}
+                      </div> 
+                      @endif --}}
                 <thead>
-                    <tr class="bg-teal-300">
+                    <tr class="bg-teal-400">
                         
                         <th>Supplier Code</th>
                         <th>Supplier name</th>
@@ -40,7 +40,7 @@
                         <th>action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align: center">
                     @foreach ($suppliers as $supplier )
                     <tr>
                         
@@ -52,35 +52,38 @@
                         <td>{{$supplier->sup_address}}</td>
                         <td>
                             @if ($supplier->sup_status==1)
-                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-success">Active</a>
+                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-success" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
+                                linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Active <i class="icon-checkmark2"></i></a>
                             @else
-                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-danger">Inactive</a>
+                            <a href="{{ route('supplier.change-status', $supplier->id)}}" class="btn btn-sm btn-danger" style="border: 2px solid transparent; background:linear-gradient(#d51062, #d51062) padding-box,
+                                linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Inactive <i class="icon-cross"></i></a>
                             @endif
                         </td>
 
                         <td><div class="d-flex align-items-center">
                             <div class="col-md-2 ">
-                                <a href="images/suppliers/{{$supplier->sup_image}}" data-popup="lightbox">
+                                <a href="../../images/suppliers/{{$supplier->sup_image}}" data-popup="lightbox">
                                     <img src="images/suppliers/{{$supplier->sup_image}}" width="160px" alt="">
                                 </a>
                             </div>
                         </td>
                         <td>
                             <div class="list-icons">                             
+                                {{-- <a href="{{route('supplier.delete', $supplier->id)}}" class=" list-icons-item " type="submit" onclick="return confirm('Are you sure want to delete ?')"><i class="btn icon-bin" title="Edit" style="font-size: 20px"></i></a> --}}
                                 <form action="{{ route('supplier.delete', $supplier->id)}}" method="post">
-                                    <a href="{{route('supplier.show', $supplier->id)}}" class="list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; padding:15px"></i></a>
-                                    <a href="{{route('supplier.edit', $supplier->id)}}" class="list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
+                                    <a href="{{route('supplier.show', $supplier->id)}}" class=" btn list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; "></i></a>
+                                    <a href="{{route('supplier.edit', $supplier->id)}}" class="btn list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
                                     @csrf
                                     @method('DELETE')
                                     
-                                    <button onclick="return confirm('Are you sure want to delete ?')" class="btn"><i class="icon-trash" title="Delete" style="font-size: 20px"></i></button>
+                                    <button onclick="return confirm('Are you sure want to delete ?')" class="btn"><i class="icon-trash" title="Delete" style="font-size:20px; padding:0;"></i></button>
 
                                 </form>
                                 <div class="dropdown">
                                     <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog6" style="font-size: 20px"></i></a>
 
                                     <div class="dropdown-menu">
-                                        <a href="#" class="dropdown-item"><i class="icon-file-pdf"></i> Export to PDF</a>
+                                        <a href="/supplier/generatepdf" class="dropdown-item"><i class="icon-file-pdf"></i> Export to PDF</a>
                                         <a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Export to CSV</a>
                                         <a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to DOC</a>
                                     </div>
@@ -92,7 +95,7 @@
                     @endforeach 
                 </tbody>
             </table>
-        </div>
+    </div>
    
     </x-sg-master> 
     <script>

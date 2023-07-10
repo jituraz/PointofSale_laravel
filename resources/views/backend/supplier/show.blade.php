@@ -4,9 +4,9 @@
       <img class="card-img-top img-fluid" src="../../images/suppliers/{{$supplier->sup_image}}" alt="">
 
       <div class="card-body">
-        <div class="row d-flex">
+        <div class="row  d-flex justify-content-between">
           <h3 class="card-title">Supplier Code: {{$supplier->sup_code}}</h3>
-          <h4 class="card-title -ml-6">Supplier Name: {{$supplier->sup_name}}</h4>
+          <h2 class="card-title">Supplier Name: {{$supplier->sup_name}}</h2>
          
 
         </div>
@@ -21,7 +21,7 @@
       </div>
 
       <div class="card-footer d-flex justify-content-between">
-        <span class="text-muted">Last updated 3 mins ago</span>
+        <span class="text-muted">Last updated {{$supplier->updated_at}} ago</span>
         <span>
           <i class="icon-star-full2 font-size-base text-warning-300"></i>
           <i class="icon-star-full2 font-size-base text-warning-300"></i>

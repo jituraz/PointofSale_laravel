@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +37,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
     Route::patch('/supplier/{id}/update', [SupplierController::class, 'update'])->name('supplier.update');
     Route::delete('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');
-    Route::delete('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');
+    // Route::get('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');- for <a> tag
     Route::get('supplier/{id}/show', [SupplierController::class, 'show'])->name('supplier.show');
     Route::get('supplier/{id}/change-staus', [SupplierController::class, 'changeStatus'])->name('supplier.change-status');
+    Route::get('/supplier/generatepdf',[SupplierController::class,'generatePDF'])->name('supplier.generatePDF');
 
+    //Coustomer Part Route
+    Route::get('/coustomer',[CoustomerController::class,'index'])->name('coustomer.index');
+    Route::get('/coustomer/create',[CoustomerController::class,'create'])->name('coustomer.create');
+    Route::post('/coustomer/store',[CoustomerController::class,'store'])->name('coustomer.store');
+    Route::get('/coustomer/{id}/edit', [CoustomerController::class, 'edit'])->name('coustomer.edit');
+    Route::patch('/coustomer/{id}/update', [CoustomerController::class, 'update'])->name('coustomer.update');
+    Route::delete('coustomer/{id}/delete', [CoustomerController::class, 'delete'])->name('coustomer.delete');
+    // Route::get('supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');- for <a> tag
+    Route::get('coustomer/{id}/show', [CoustomerController::class, 'show'])->name('coustomer.show');
+    Route::get('coustomer/{id}/change-staus', [CoustomerController::class, 'changeStatus'])->name('coustomer.change-status');
+    Route::get('/coustomer/generatepdf',[CoustomerController::class,'generatePDF'])->name('coustomer.generatePDF');
 
 });
 
