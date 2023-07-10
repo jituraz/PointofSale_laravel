@@ -81,7 +81,7 @@
                       </div>
                     </div>    
                   </div>
-                  <a href="/supplier" ><button type="submit" class="btn btn-outline-primary" style="margin: 10px">Submit</button></a>
+                  <a href="/supplier" ><button type="submit" class="btn btn-outline-success" style="margin: 10px">Submit</button></a>
                   <a href="/supplier" class="btn btn-outline-primary" style="margin: 10px">Back</button></a>
                 </div>    
               </form>    

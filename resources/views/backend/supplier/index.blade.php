@@ -27,17 +27,17 @@
                       </div> 
                       @endif --}}
                 <thead>
-                    <tr class="bg-teal-400">
+                    <tr class="bg-teal-400" style="text-align: center">
                         
-                        <th>Supplier Code</th>
+                        <th style="width:20px">Supplier Code</th>
                         <th>Supplier name</th>
                         <th>Supplier Email</th>
                         <th>Supplier Phone</th>
-                        <th class="sorting">Supplier Country</th>
-                        <th>Supplier Address</th>
+                        <th>Supplier Country</th>
+                        <th class="sorting">Supplier Address</th>
                         <th>Supplier Status</th>
                         <th>Supplier image</th>
-                        <th>action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody style="text-align: center">
