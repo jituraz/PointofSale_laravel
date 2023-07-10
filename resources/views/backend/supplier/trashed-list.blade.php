@@ -3,13 +3,11 @@
     <div class="content">
         <div class="card">
             <div class="card-header bg-teal-800 text-white header-elements-inline">
-                <h6 class="card-title">Supplier List</h6>
+                <h6 class="card-title">Trashed Supplier List</h6>
             <div class="header-elements">
             <div class="list-icons">
-                <a href="{{route('supplier.create')}}"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
-                    linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Create Supplier<i class="icon-checkmark2 ml-1"></i></button></a>
-                <a href="{{route('supplier.trashed')}}"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
-                    linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Trashed Supplier<i class="icon-checkmark2 ml-1"></i></button></a>
+                <a href="{{route('supplier.index')}}"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
+                    linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Back Supplier<i class="icon-checkmark2 ml-1"></i></button></a>
                 <a class="list-icons-item" data-action="collapse"></a>
                 <a class="list-icons-item ui-sortable-handle" data-action="move"></a>
                 <a class="list-icons-item" data-action="reload"></a>

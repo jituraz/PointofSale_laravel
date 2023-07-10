@@ -15,8 +15,14 @@ use View;
 class SupplierController extends Controller
 {
     public function index(){
-        $suppliers = Supplier::all();
+        // $suppliers = Supplier::all();
+        $suppliers = Supplier::orderby('id','DESC')->paginate(100);
         return view('backend.supplier.index',compact('suppliers'));
+    }
+    public function trashed_supplier(){
+        // $suppliers = Supplier::all();
+        $suppliers = Supplier::onlyTrashed()->orderby('id','DESC')->paginate(100);
+        return view('backend.supplier.trashed-list',compact('suppliers'));
     }
     public function create(){
         return view('backend.supplier.create');
@@ -145,7 +151,7 @@ class SupplierController extends Controller
         ];
         
 
-        $pdf = PDF::loadView('backend.supplier.downloadpdf',$data , compact('suppliers'))->setPaper('a4','landscape');
+        $pdf = PDF::loadView('backend.supplier.pdf',$data , compact('suppliers'))->setPaper('a4','landscape');
         return $pdf->download('mypdf'.time().'pdf');
 
         // return view('backend.supplier.downloadpdf',compact('suppliers'));

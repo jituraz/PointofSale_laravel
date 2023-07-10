@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('supplier/{id}/show', [SupplierController::class, 'show'])->name('supplier.show');
     Route::get('supplier/{id}/change-staus', [SupplierController::class, 'changeStatus'])->name('supplier.change-status');
     Route::get('/supplier/generatepdf',[SupplierController::class,'generatePDF'])->name('supplier.generatePDF');
-
+    Route::get('/supplier/trashed',[SupplierController::class,'trashed_supplier'])->name('supplier.trashed');
     //Coustomer Part Route
     Route::get('/coustomer',[CoustomerController::class,'index'])->name('coustomer.index');
     Route::get('/coustomer/create',[CoustomerController::class,'create'])->name('coustomer.create');
@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('coustomer/{id}/show', [CoustomerController::class, 'show'])->name('coustomer.show');
     Route::get('coustomer/{id}/change-staus', [CoustomerController::class, 'changeStatus'])->name('coustomer.change-status');
     Route::get('/coustomer/generatepdf',[CoustomerController::class,'generatePDF'])->name('coustomer.generatePDF');
+    Route::get('/coustomer/trashed',[CoustomerController::class,'trashed_coustomer'])->name('coustomer.trashed');
 
 });
 
