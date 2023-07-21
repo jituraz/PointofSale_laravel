@@ -20,12 +20,7 @@
         <div class="content" >
             
             <table class="table datatable-responsive table-bordered">
-                {{-- @if($message = Session::get('success'))
-                    <div class="alert alert-danger alert-block">
-                     <strong>{{$message}}</strong>
-     
-                      </div> 
-                      @endif --}}
+          
                 <thead>
                     <tr class="bg-teal-400" style="text-align: center">
                         
@@ -63,25 +58,21 @@
                         <td><div class="d-flex align-items-center">
                             <div class="col-md-2 ">
                                 <a href="../../images/suppliers/{{$supplier->sup_image}}" data-popup="lightbox">
-                                    <img src="images/suppliers/{{$supplier->sup_image}}" width="160px" alt="">
+                                    <img src="../images/suppliers/{{$supplier->sup_image}}" width="160px" alt="">
                                 </a>
                             </div>
                         </td>
                         <td>
                             <div class="list-icons">                             
                                 {{-- <a href="{{route('supplier.delete', $supplier->id)}}" class=" list-icons-item " type="submit" onclick="return confirm('Are you sure want to delete ?')"><i class="btn icon-bin" title="Edit" style="font-size: 20px"></i></a> --}}
-                                <form action="{{ route('supplier.delete', $supplier->id)}}" method="post">
-                                    <a href="{{route('supplier.show', $supplier->id)}}" class=" btn list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 20px; "></i></a>
-                                    <a href="{{route('supplier.edit', $supplier->id)}}" class="btn list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 20px"></i></a>
+                                <form action="{{ route('supplier.per_delete', $supplier->id)}}" method="post">
+                                    <a href="{{route('supplier.restore', $supplier->id)}}" class="btn list-icons-item"><i class="icon-home" title="restore" style="font-size: 20px"></i></a>
                                     @csrf
-                                    @method('DELETE')
-                                    
-                                    <button onclick="return confirm('Are you sure want to delete ?')" class="btn"><i class="icon-trash" title="Delete" style="font-size:20px; padding:0;"></i></button>
-
+                                    @method('DELETE')  
+                                    <button onclick="return confirm('Are you sure want to delete ?')" type="submit" class="btn"><i class="icon-trash" title="Delete" style="font-size:20px; padding:0;"></i></button>
                                 </form>
                                 <div class="dropdown">
                                     <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog6" style="font-size: 20px"></i></a>
-
                                     <div class="dropdown-menu">
                                         <a href="/supplier/generatepdf" class="dropdown-item"><i class="icon-file-pdf"></i> Export to PDF</a>
                                         <a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Export to CSV</a>
@@ -90,7 +81,6 @@
                                 </div>
                             </div>
                         </td>
-                       
                     </tr>
                     @endforeach 
                 </tbody>

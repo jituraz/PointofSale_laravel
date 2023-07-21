@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use POST;
 use View;
 
+
 class SupplierController extends Controller
 {
     public function index(){
@@ -23,6 +24,15 @@ class SupplierController extends Controller
         // $suppliers = Supplier::all();
         $suppliers = Supplier::onlyTrashed()->orderby('id','DESC')->paginate(100);
         return view('backend.supplier.trashed-list',compact('suppliers'));
+    }
+    public function restore($id){
+        
+        $suppliers = Supplier::withTrashed()->findOrFail($id);
+        if(!is_null($suppliers)) {
+            $suppliers->restore();
+        }
+
+        return redirect()->route('supplier.index')->with('success','Employee restored successfully');
     }
     public function create(){
         return view('backend.supplier.create');
@@ -109,17 +119,31 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         
-
-        $distination = 'images/suppliers/'.$supplier->sup_image;
-            if(File::exists($distination))
-            {
-                File::delete($distination);
-            }
+        // $distination = 'images/suppliers/'.$supplier->sup_image;
+        //     if(File::exists($distination))
+        //     {
+        //         File::delete($distination);
+        //     }
         $supplier->delete();
             
         return back()->withSuccess('Supplier Delete Successfully !!!!! ');
 
     }
+    public function per_delete($id)
+   
+    {
+        $supplier = Supplier::withTrashed()->find($id);
+        
+        $distination = 'images/suppliers/'.$supplier->sup_image;
+            if(File::exists($distination))
+            {
+                File::delete($distination);
+            }
+        $supplier->forceDelete();
+            
+        return back()->withSuccess('Supplier Delete Successfully !!!!! ');
+    }
+    
     public function show($id)
     {
         $supplier = Supplier::find($id);
