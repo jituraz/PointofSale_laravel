@@ -20,20 +20,7 @@ class SupplierController extends Controller
         $suppliers = Supplier::orderby('id','DESC')->paginate(100);
         return view('backend.supplier.index',compact('suppliers'));
     }
-    public function trashed_supplier(){
-        // $suppliers = Supplier::all();
-        $suppliers = Supplier::onlyTrashed()->orderby('id','DESC')->paginate(100);
-        return view('backend.supplier.trashed-list',compact('suppliers'));
-    }
-    public function restore($id){
-        
-        $suppliers = Supplier::withTrashed()->findOrFail($id);
-        if(!is_null($suppliers)) {
-            $suppliers->restore();
-        }
-
-        return redirect()->route('supplier.index')->with('success','Employee restored successfully');
-    }
+  
     public function create(){
         return view('backend.supplier.create');
     }
@@ -126,7 +113,8 @@ class SupplierController extends Controller
         //     }
         $supplier->delete();
             
-        return back()->withSuccess('Supplier Delete Successfully !!!!! ');
+        return back()->with('warning','Supplier Delete Successfully !!!!! ');
+        
 
     }
     public function per_delete($id)
@@ -164,6 +152,20 @@ class SupplierController extends Controller
         return back()->with('info','Supplier Status Change Successfully !!!!! ');
     }
 
+    public function trashed_supplier(){
+        // $suppliers = Supplier::all();
+        $suppliers = Supplier::onlyTrashed()->orderby('id','DESC')->paginate(100);
+        return view('backend.supplier.trashed-list',compact('suppliers'));
+    }
+    public function restore($id){
+        
+        $supplier = Supplier::withTrashed()->findOrFail($id);
+        if(!is_null($supplier)) {
+            $supplier->restore();
+        }
+
+        return redirect()->route('supplier.index')->with('restore','Employee restored successfully');
+    }
 
     public function generatePDF(){
         $suppliers = Supplier::all();
@@ -178,25 +180,9 @@ class SupplierController extends Controller
         $pdf = PDF::loadView('backend.supplier.pdf',$data , compact('suppliers'))->setPaper('a4','landscape');
         return $pdf->download('mypdf'.time().'pdf');
 
-        // return view('backend.supplier.downloadpdf',compact('suppliers'));
+        // return view('backend.supplier.pdf',compact('suppliers'));
     
-        // $supliers = Supplier::all();
-        // foreach ($supliers as $supplier){
-        //     // $imagePath = public_path('images/suppliers/'.$supplier['sup_image']);
-        //     $imagePath = 'images/suppliers/'.$supplier['sup_image'];
-        // //    print_r($imagePath);
-        //     $imageData = Storage::get($imagePath);
-        //     // print_r($imageData);
-        //     $base64Image = base64_encode($imageData);
-        //     $supplier->sup_image= 'data:image/jpeg;base64,'.$base64Image;
-        // }
-        // $data = ['Supplier' => $supliers];
-        // $html =View::make('backend.supplier.downloadpdf', $data)->Blade::render();
-        // // print_r($html);
-        // $pdf = new Dompdf();
-        // $pdf->loadHtml($html);
-        // $pdf->render();
-        // return $pdf->stream('supplier pdf.pdf');
+      
     }
 
 }

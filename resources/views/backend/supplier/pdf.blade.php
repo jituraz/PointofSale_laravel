@@ -13,7 +13,7 @@
   <body>
     <div class="card-body">
       <h1>{{$title}}</h1>
-      {{-- <h1>{{$image->$supplier->sup_image}}</h1> --}}
+     
 
       <table class="table table-bordered table-responsive{-sm|-md|-lg|-xl}">
         <thead>
@@ -43,20 +43,16 @@
               <td>{{$supplier->sup_address}}</td>
               <td>
                   @if ($supplier->sup_status==1)
-                  <a href="" class="btn btn-sm btn-success" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
-                      linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Active <i class="icon-checkmark2"></i></a>
+                  <a href="" style="color:#00695C">Active</a>
                   @else
-                  <a href="" class="btn btn-sm btn-danger" style="border: 2px solid transparent; background:linear-gradient(#d51062, #d51062) padding-box,
-                      linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Inactive <i class="icon-cross"></i></a>
+                  <a href="" style="color:red">Active</a>
                   @endif
               </td>
 
               <td><div class="d-flex align-items-center">
                   <div class="col-md-2 ">
-                
-                        
-                          <img src="{{$image.$supplier['sup_image']" width="160px" alt="">
-
+                <img src="{{asset('images/suppliers/'. $supplier->sup_image)}}" alt="">
+               
 
                   </div>
               </td>
