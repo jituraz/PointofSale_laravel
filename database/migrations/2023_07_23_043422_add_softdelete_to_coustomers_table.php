@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('coustomers', function (Blueprint $table) {
-            $table->tinyInteger('cous_status')->after('cous_address')->default('1');
-            $table->softDeletes();
+          
         });
     }
 
