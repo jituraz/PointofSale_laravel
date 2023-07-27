@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Coustomer;
-
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use POST;
 use View;
@@ -54,5 +55,10 @@ class CoustomerController extends Controller
 
         $coustomers->save();
         return back()->withSuccess('Coustomer Create Successfully !!!!! ');
+    }
+    public function edit($id)
+    {
+        $coustomers = Coustomer::find($id);
+        return view('backend.coustomer.edit', compact('coustomers'));
     }
 }

@@ -8,8 +8,7 @@
             <div class="list-icons">
                 <a href="{{route('coustomer.create')}}"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
                     linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Create cousotmer<i class="icon-checkmark2 ml-1"></i></button></a>
-                {{-- <a href="{{route('coustomer.trashed')}}"><button type="submit" class="btn  ml-0 legitRipple" style="border: 2px solid transparent; background:linear-gradient(#00695C, #00695C) padding-box,
-                    linear-gradient(60deg, #20bf55 0%, #01baef 74%) border-box; color:aliceblue;">Trashed Supplier<i class="icon-checkmark2 ml-1"></i></button></a> --}}
+               
                 <a class="list-icons-item" data-action="collapse"></a>
                 <a class="list-icons-item ui-sortable-handle" data-action="move"></a>
                 <a class="list-icons-item" data-action="reload"></a>
@@ -66,7 +65,6 @@
                         </td>
                         <td>
                             <div class="list-icons embed-responsive" >                             
-                                {{-- <a href="{{route('supplier.delete', $supplier->id)}}" class=" list-icons-item " type="submit" onclick="return confirm('Are you sure want to delete ?')"><i class="btn icon-bin" title="Edit" style="font-size: 20px"></i></a> --}}
                                 <form action="{{ route('coustomer.delete', $coustomer->id)}}" method="post">
                                     <a href="{{route('coustomer.show', $coustomer->id)}}" class=" btn list-icons-item" ><i class="icon-eye" title="Show" style="font-size: 17px; "></i></a>
                                     <a href="{{route('coustomer.edit', $coustomer->id)}}" class="btn list-icons-item"><i class="icon-pencil7" title="Edit" style="font-size: 17px"></i></a>
